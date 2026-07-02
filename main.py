@@ -14,6 +14,7 @@ SRC_PATH = PROJECT_ROOT / "src"
 sys.path.append(str(SRC_PATH))
 
 from pipeline import ClinicalDocumentationPipeline
+from utils import save_text_file
 
 
 def load_sample_input(file_path: Path) -> dict:
@@ -22,13 +23,6 @@ def load_sample_input(file_path: Path) -> dict:
 
     with file_path.open("r", encoding="utf-8") as file:
         return json.load(file)
-
-
-def save_text(file_path: Path, content: str) -> None:
-    file_path.parent.mkdir(parents=True, exist_ok=True)
-
-    with file_path.open("w", encoding="utf-8") as file:
-        file.write(content)
 
 
 def main() -> None:
@@ -50,13 +44,13 @@ def main() -> None:
     result = pipeline.generate_document(patient_record)
 
     print("✓ Saving generated prompt...")
-    save_text(prompt_path, result["prompt"])
+    save_text_file(prompt_path, result["prompt"])
 
     print("✓ Saving raw AI output...")
-    save_text(raw_output_path, result["raw_output"])
+    save_text_file(raw_output_path, result["raw_output"])
 
     print("✓ Saving processed clinical documentation...")
-    save_text(processed_output_path, result["processed_output"])
+    save_text_file(processed_output_path, result["processed_output"])
 
     print("\n" + "=" * 60)
     print("Pipeline completed successfully")
