@@ -32,3 +32,32 @@ clinical-documentation-ai/
 ├── src/
 ├── docs/
 └── examples/
+## 🛠 Tech Stack
+
+- Python
+- Pandas
+- NLP
+- Prompt Engineering
+- Generative AI
+- MIMIC-IV
+- Google Colab
+
+---
+
+## 🗺️ Roadmap
+
+- [ ] Prepare repository structure
+- [ ] Add project documentation
+- [ ] Add anonymised sample inputs
+- [ ] Add prompt templates
+- [ ] Add post-processing scripts
+- [ ] Add architecture diagram
+- [ ] Add example generated report
+
+---
+
+## ⚠️ Disclaimer
+
+This project is for educational and portfolio purposes only.
+
+It is **not intended for clinical use or medical decision-making.**
