@@ -1,0 +1,7 @@
+{
+  "patient_id": "P001",
+  "document_type": "Discharge Summary",
+  "diagnoses": "K21.9; I10; E03.9; J90",
+  "procedures": "0W9930Z; 0JH63XZ",
+  "additional_information": "The patient episode includes several diagnoses and procedures associated with the hospitalization."
+}

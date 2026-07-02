@@ -1,0 +1,24 @@
+Generate a clinical discharge summary using anonymized patient data.
+
+Patient ID: P001
+Document type: Discharge Summary
+
+Diagnosis:
+- K21.9
+- I10
+- E03.9
+- J90
+
+Procedures:
+- 0W9930Z
+- 0JH63XZ
+
+Additional clinical information:
+The patient episode includes several diagnoses and procedures associated with the hospitalization.
+
+Instructions:
+- Generate a structured draft discharge summary.
+- Do not invent patient names, hospital names or dates.
+- Use only the information provided in the input.
+- Keep the output clear, concise and clinically oriented.
+- This is an AI-assisted draft and must be reviewed by a qualified professional.
