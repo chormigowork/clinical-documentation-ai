@@ -9,6 +9,15 @@ import json
 from pathlib import Path
 import sys
 
+from config import (
+    PROJECT_NAME,
+    PROJECT_TAGLINE,
+    SAMPLE_INPUT_PATH,
+    GENERATED_PROMPT_PATH,
+    RAW_OUTPUT_PATH,
+    PROCESSED_OUTPUT_PATH,
+)
+
 PROJECT_ROOT = Path(__file__).resolve().parent
 SRC_PATH = PROJECT_ROOT / "src"
 sys.path.append(str(SRC_PATH))
@@ -31,10 +40,10 @@ def main() -> None:
     print("An Explainable AI Pipeline for Clinical Documentation")
     print("=" * 60)
 
-    input_path = PROJECT_ROOT / "examples" / "sample_input.json"
-    prompt_path = PROJECT_ROOT / "examples" / "generated_prompt.txt"
-    raw_output_path = PROJECT_ROOT / "examples" / "raw_output.txt"
-    processed_output_path = PROJECT_ROOT / "examples" / "sample_output.txt"
+    input_path = SAMPLE_INPUT_PATH
+    prompt_path = GENERATED_PROMPT_PATH
+    raw_output_path = RAW_OUTPUT_PATH
+    processed_output_path = PROCESSED_OUTPUT_PATH
 
     print("✓ Loading structured patient data...")
     patient_record = load_sample_input(input_path)
