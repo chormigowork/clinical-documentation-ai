@@ -12,11 +12,13 @@ Generation
 Post-processing
 """
 
-from typing import Any
-
-from generator import MockClinicalGenerator, TextGenerator, generate_text
-from postprocessing import postprocess_generated_text
-from prompt_builder import build_prompt_from_record
+from clinical_documentation_ai.generator import (
+    MockClinicalGenerator,
+    TextGenerator,
+    generate_text,
+)
+from clinical_documentation_ai.postprocessing import postprocess_generated_text
+from clinical_documentation_ai.prompt_builder import build_prompt_from_record
 
 
 class ClinicalDocumentationPipeline:

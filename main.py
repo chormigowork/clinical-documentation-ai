@@ -9,7 +9,12 @@ import json
 from pathlib import Path
 import sys
 
-from config import (
+
+PROJECT_ROOT = Path(__file__).resolve().parent
+SRC_PATH = PROJECT_ROOT / "src"
+sys.path.append(str(SRC_PATH))
+
+from clinical_documentation_ai.config import (
     PROJECT_NAME,
     PROJECT_TAGLINE,
     SAMPLE_INPUT_PATH,
@@ -18,12 +23,8 @@ from config import (
     PROCESSED_OUTPUT_PATH,
 )
 
-PROJECT_ROOT = Path(__file__).resolve().parent
-SRC_PATH = PROJECT_ROOT / "src"
-sys.path.append(str(SRC_PATH))
-
-from pipeline import ClinicalDocumentationPipeline
-from utils import save_text_file
+from clinical_documentation_ai.pipeline import ClinicalDocumentationPipeline
+from clinical_documentation_ai.utils import save_text_file
 
 
 def load_sample_input(file_path: Path) -> dict:
@@ -36,8 +37,8 @@ def load_sample_input(file_path: Path) -> dict:
 
 def main() -> None:
     print("=" * 60)
-    print("Clinical Documentation AI")
-    print("An Explainable AI Pipeline for Clinical Documentation")
+    print(PROJECT_NAME)
+    print(PROJECT_TAGLINE)
     print("=" * 60)
 
     input_path = SAMPLE_INPUT_PATH
