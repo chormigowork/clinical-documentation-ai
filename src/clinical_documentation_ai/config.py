@@ -19,3 +19,6 @@ GENERATED_PROMPT_PATH = EXAMPLES_DIR / "generated_prompt.txt"
 RAW_OUTPUT_PATH = EXAMPLES_DIR / "raw_output.txt"
 PROCESSED_OUTPUT_PATH = EXAMPLES_DIR / "sample_output.txt"
 EXPLAINABILITY_REPORT_PATH = EXAMPLES_DIR / "explainability_report.md"
+
+LOG_FORMAT = "%(asctime)s | %(levelname)s | %(message)s"
+LOG_DATE_FORMAT = "%Y-%m-%d %H:%M:%S"

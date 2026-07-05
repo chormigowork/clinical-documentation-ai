@@ -8,6 +8,7 @@ Examples:
 
 import argparse
 import json
+import logging
 import sys
 from pathlib import Path
 
@@ -24,21 +25,30 @@ from clinical_documentation_ai.config import (
     RAW_OUTPUT_PATH,
     PROCESSED_OUTPUT_PATH,
     EXPLAINABILITY_REPORT_PATH,
+    LOG_FORMAT,
+    LOG_DATE_FORMAT,
 )
-
-from clinical_documentation_ai.pipeline import ClinicalDocumentationPipeline
-from clinical_documentation_ai.utils import save_text_file
 from clinical_documentation_ai.explainability_report import (
     generate_explainability_report,
 )
+from clinical_documentation_ai.pipeline import ClinicalDocumentationPipeline
+from clinical_documentation_ai.utils import save_text_file
+
+
+def configure_logging() -> None:
+    """
+    Configure application logging.
+    """
+    logging.basicConfig(
+        level=logging.INFO,
+        format=LOG_FORMAT,
+        datefmt=LOG_DATE_FORMAT,
+    )
 
 
 def parse_args() -> argparse.Namespace:
     """
     Parse command-line arguments.
-
-    Returns:
-        Parsed command-line arguments.
     """
     parser = argparse.ArgumentParser(
         description="Run the Clinical Documentation AI pipeline."
@@ -64,12 +74,6 @@ def parse_args() -> argparse.Namespace:
 def load_sample_input(file_path: Path) -> dict:
     """
     Load patient input from a JSON file.
-
-    Args:
-        file_path: Path to the input JSON file.
-
-    Returns:
-        Patient record as a dictionary.
     """
     if not file_path.exists():
         raise FileNotFoundError(f"Input file not found: {file_path}")
@@ -82,17 +86,18 @@ def main() -> None:
     """
     Execute the complete Clinical Documentation AI pipeline.
     """
+    configure_logging()
     args = parse_args()
 
-    print("=" * 60)
-    print(PROJECT_NAME)
-    print(PROJECT_TAGLINE)
-    print("=" * 60)
+    logging.info("=" * 60)
+    logging.info(PROJECT_NAME)
+    logging.info(PROJECT_TAGLINE)
+    logging.info("=" * 60)
 
-    print("✓ Loading structured patient data...")
+    logging.info("Loading structured patient data...")
     patient_record = load_sample_input(args.input)
 
-    print("✓ Running explainable AI pipeline...")
+    logging.info("Running explainable AI pipeline...")
     pipeline = ClinicalDocumentationPipeline()
     result = pipeline.generate_document(patient_record)
 
@@ -103,26 +108,26 @@ def main() -> None:
         processed_output=result["processed_output"],
     )
 
-    print("✓ Saving generated prompt...")
+    logging.info("Saving generated prompt...")
     save_text_file(GENERATED_PROMPT_PATH, result["prompt"])
 
-    print("✓ Saving raw AI output...")
+    logging.info("Saving raw AI output...")
     save_text_file(RAW_OUTPUT_PATH, result["raw_output"])
 
-    print("✓ Saving processed clinical documentation...")
+    logging.info("Saving processed clinical documentation...")
     save_text_file(args.output, result["processed_output"])
 
-    print("✓ Saving explainability report...")
+    logging.info("Saving explainability report...")
     save_text_file(EXPLAINABILITY_REPORT_PATH, explainability_report)
 
-    print("\n" + "=" * 60)
-    print("Pipeline completed successfully")
-    print("=" * 60)
-    print(f"Input file: {args.input}")
-    print(f"Prompt saved at: {GENERATED_PROMPT_PATH}")
-    print(f"Raw output saved at: {RAW_OUTPUT_PATH}")
-    print(f"Processed output saved at: {args.output}")
-    print(f"Explainability report saved at: {EXPLAINABILITY_REPORT_PATH}")
+    logging.info("=" * 60)
+    logging.info("Pipeline completed successfully")
+    logging.info("=" * 60)
+    logging.info("Input file: %s", args.input)
+    logging.info("Prompt saved at: %s", GENERATED_PROMPT_PATH)
+    logging.info("Raw output saved at: %s", RAW_OUTPUT_PATH)
+    logging.info("Processed output saved at: %s", args.output)
+    logging.info("Explainability report saved at: %s", EXPLAINABILITY_REPORT_PATH)
 
 
 if __name__ == "__main__":
