@@ -1,10 +1,12 @@
 """
 Command-line entry point for Clinical Documentation AI.
 
-Run:
+Examples:
     python main.py
+    python main.py --input examples/sample_input.json --output examples/custom_output.txt
 """
 
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -12,7 +14,6 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parent
 SRC_PATH = PROJECT_ROOT / "src"
 
-# Allow imports from the project package
 sys.path.append(str(SRC_PATH))
 
 from clinical_documentation_ai.config import (
@@ -32,12 +33,46 @@ from clinical_documentation_ai.explainability_report import (
 )
 
 
+def parse_args() -> argparse.Namespace:
+    """
+    Parse command-line arguments.
+
+    Returns:
+        Parsed command-line arguments.
+    """
+    parser = argparse.ArgumentParser(
+        description="Run the Clinical Documentation AI pipeline."
+    )
+
+    parser.add_argument(
+        "--input",
+        type=Path,
+        default=SAMPLE_INPUT_PATH,
+        help="Path to the input JSON file.",
+    )
+
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=PROCESSED_OUTPUT_PATH,
+        help="Path to save the processed clinical documentation.",
+    )
+
+    return parser.parse_args()
+
+
 def load_sample_input(file_path: Path) -> dict:
     """
-    Load sample patient input from a JSON file.
+    Load patient input from a JSON file.
+
+    Args:
+        file_path: Path to the input JSON file.
+
+    Returns:
+        Patient record as a dictionary.
     """
     if not file_path.exists():
-        raise FileNotFoundError(f"Sample input not found: {file_path}")
+        raise FileNotFoundError(f"Input file not found: {file_path}")
 
     with file_path.open("r", encoding="utf-8") as file:
         return json.load(file)
@@ -47,6 +82,7 @@ def main() -> None:
     """
     Execute the complete Clinical Documentation AI pipeline.
     """
+    args = parse_args()
 
     print("=" * 60)
     print(PROJECT_NAME)
@@ -54,11 +90,10 @@ def main() -> None:
     print("=" * 60)
 
     print("✓ Loading structured patient data...")
-    patient_record = load_sample_input(SAMPLE_INPUT_PATH)
+    patient_record = load_sample_input(args.input)
 
     print("✓ Running explainable AI pipeline...")
     pipeline = ClinicalDocumentationPipeline()
-
     result = pipeline.generate_document(patient_record)
 
     explainability_report = generate_explainability_report(
@@ -75,7 +110,7 @@ def main() -> None:
     save_text_file(RAW_OUTPUT_PATH, result["raw_output"])
 
     print("✓ Saving processed clinical documentation...")
-    save_text_file(PROCESSED_OUTPUT_PATH, result["processed_output"])
+    save_text_file(args.output, result["processed_output"])
 
     print("✓ Saving explainability report...")
     save_text_file(EXPLAINABILITY_REPORT_PATH, explainability_report)
@@ -83,10 +118,10 @@ def main() -> None:
     print("\n" + "=" * 60)
     print("Pipeline completed successfully")
     print("=" * 60)
-
+    print(f"Input file: {args.input}")
     print(f"Prompt saved at: {GENERATED_PROMPT_PATH}")
     print(f"Raw output saved at: {RAW_OUTPUT_PATH}")
-    print(f"Processed output saved at: {PROCESSED_OUTPUT_PATH}")
+    print(f"Processed output saved at: {args.output}")
     print(f"Explainability report saved at: {EXPLAINABILITY_REPORT_PATH}")
 
 

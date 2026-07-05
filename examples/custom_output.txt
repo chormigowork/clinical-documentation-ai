@@ -1,0 +1,7 @@
+Discharge Summary:This is an AI-assisted draft generated from structured clinical information.
+Hospital Course:
+The patient episode includes multiple diagnoses and procedures provided as structured input data.
+Clinical Impression:
+The generated documentation should be reviewed by a qualified healthcare professional before any clinical use.
+Disclaimer:
+This output is generated for educational and portfolio purposes only.
