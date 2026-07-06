@@ -1,204 +1,217 @@
 # 🩺 Clinical Documentation AI
 
-### *An Explainable AI Pipeline for Clinical Document Generation*
+### An Explainable AI Pipeline for Clinical Document Generation
 
-> From Clinical Data to Clinical Documentation
+**Build • Learn • Share**
 
----
-
-## Overview
-
-Clinical Documentation AI is an explainable AI pipeline that explores how Generative AI can support the creation of draft clinical documentation from structured clinical data.
-
-The project is based on a modular architecture designed around transparency, traceability, post-processing and human supervision.
-
-It was originally developed as my Final Degree Project in Applied Data Science, with a final grade of **9.01/10**, and is now being redesigned as a professional open-source portfolio project.
+Transform structured clinical data into AI-assisted clinical documentation through a transparent, modular and educational Python pipeline.
 
 ---
 
-## Design Principles
+## ⏱ In 30 Seconds
 
-- **Human supervision first**
-- **Transparency by design**
-- **Modular architecture**
-- **Reproducible workflow**
-- **Responsible AI**
-- **Educational and research-oriented use**
+This repository demonstrates how to:
 
----
-
-## The Problem
-
-Clinical documentation is one of the most time-consuming administrative tasks in healthcare.
-
-Healthcare professionals often spend a significant amount of time writing discharge summaries and clinical reports, reducing the time available for direct patient care.
-
-Generative AI can help with this process, but its use in healthcare requires careful design due to risks such as hallucinations, lack of traceability and factual inconsistencies.
+- ✅ Build a modular AI pipeline in Python
+- ✅ Transform structured clinical data into structured prompts
+- ✅ Generate AI-assisted clinical documentation
+- ✅ Apply post-processing techniques
+- ✅ Produce explainability reports
+- ✅ Learn software engineering best practices through a real project
 
 ---
 
-## The Solution
+## 🚀 Quick Start
 
-This project implements a modular AI-assisted workflow:
+Clone the repository
+
+```bash
+git clone https://github.com/chormigowork/clinical-documentation-ai.git
+```
+
+Enter the project
+
+```bash
+cd clinical-documentation-ai
+```
+
+Create a virtual environment
+
+```bash
+python -m venv .venv
+```
+
+Activate it
+
+Windows
+
+```bash
+.venv\Scripts\activate
+```
+
+Linux / macOS
+
+```bash
+source .venv/bin/activate
+```
+
+Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the pipeline
+
+```bash
+python main.py
+```
+
+Run the tests
+
+```bash
+python -m pytest
+```
+
+---
+
+## 🏗 Architecture
 
 ```text
 Structured Clinical Data
-        ↓
-Data Preprocessing
-        ↓
-Prompt Builder
-        ↓
-Generative AI Model
-        ↓
-Post-processing
-        ↓
-Draft Clinical Documentation
-        ↓
-Human Review
+            │
+            ▼
+      Prompt Builder
+            │
+            ▼
+    AI Text Generator
+            │
+            ▼
+     Post-processing
+            │
+            ▼
+ Explainability Report
+            │
+            ▼
+ Generated Documentation
 ```
 
-The goal is not to replace clinicians, but to explore how AI can assist documentation tasks in a transparent and controlled way.
-
 ---
 
-## Key Features
+## ✨ What you'll find in this project
 
-- Structured clinical data preprocessing
-- Prompt Engineering for clinical text generation
-- AI-assisted draft discharge summary generation
-- Post-processing and text normalisation
 - Modular Python architecture
-- Human-in-the-loop philosophy
-- Designed for reproducibility and future extension
+- Prompt Engineering
+- Explainable AI pipeline
+- Structured project configuration
+- Command-line execution
+- Logging
+- Unit testing with pytest
+- Human-in-the-loop approach
+- Clean and maintainable code
 
 ---
 
-## Repository Structure
+## 📚 What you can learn
+
+This project contains practical examples of:
+
+- Python package structure
+- Software architecture
+- Prompt Engineering
+- Explainable AI
+- Logging
+- Unit Testing
+- Command-line applications
+- Project documentation
+- Git & GitHub workflows
+
+---
+
+## 📂 Repository Structure
 
 ```text
 clinical-documentation-ai/
-│
-├── README.md
-├── LICENSE
-├── requirements.txt
-├── .gitignore
-│
-├── data/
-│   ├── raw/
-│   └── processed/
-│
+
 ├── docs/
-│   ├── images/
-│   ├── diagrams/
-│   └── screenshots/
-│
 ├── examples/
-│   ├── sample_input.json
-│   └── sample_output.txt
-│
-├── notebooks/
-│
 ├── src/
-│   ├── preprocessing.py
-│   ├── prompt_builder.py
-│   ├── generator.py
-│   ├── postprocessing.py
-│   ├── evaluation.py
-│   ├── pipeline.py
-│   └── utils.py
-│
-└── tests/
+│   └── clinical_documentation_ai/
+├── tests/
+├── main.py
+├── README.md
+└── requirements.txt
 ```
 
 ---
 
-## Technology Stack
+## ❤️ Project Philosophy
 
-**Programming**
+Professional software should also be easy to understand.
 
-Python
+This repository was built to demonstrate that software engineering best practices and readability can coexist.
 
-**Data Processing**
+The objective is not only to build an AI pipeline, but also to help other developers understand how it works.
 
-Pandas · NumPy
+➡ Read the complete philosophy in:
 
-**Artificial Intelligence**
-
-Generative AI · Prompt Engineering · NLP
-
-**Development**
-
-Google Colab · Jupyter Notebook · Git · GitHub
-
-**Dataset**
-
-MIMIC-IV / MIMIC-IV-Note
+```
+docs/PROJECT_PHILOSOPHY.md
+```
 
 ---
 
-## Project Status
+## 📈 Project Evolution
 
-🚧 Work in progress.
+This repository started as my Final Degree Project in Applied Data Science (final grade **9.01/10**).
 
-Current version: **v0.1 – Core architecture**
+Instead of leaving it archived after graduation, it has been redesigned as a professional open-source portfolio project focused on software engineering, explainability and learning.
 
----
-
-## Roadmap
-
-### v0.1 — Foundation
-
-- [x] Repository structure
-- [x] README initial version
-- [x] Preprocessing module
-- [x] Prompt builder module
-- [ ] Generator module
-- [ ] Post-processing module
-- [ ] Pipeline module
-
-### v0.5 — Executable Pipeline
-
-- [ ] Sample input
-- [ ] Sample output
-- [ ] End-to-end local execution
-- [ ] Basic CLI
-
-### v1.0 — Portfolio Release
-
-- [ ] Architecture diagram
-- [ ] Project banner
-- [ ] Screenshots
-- [ ] Complete documentation
-- [ ] Example generated report
-
-### v2.0 — Interactive Demo
-
-- [ ] Web interface
-- [ ] Upload CSV or JSON
-- [ ] Visualise prompt, raw output and processed output
-- [ ] Export clinical draft
+Each version improves both the software and the learning experience.
 
 ---
 
-## Disclaimer
+## 🗺 Roadmap
 
-This repository is intended exclusively for educational, research and portfolio purposes.
+### ✅ v1.0
 
-It is **not** a medical device, **not** intended for clinical diagnosis and **must not** be used for medical decision-making.
+- Modular architecture
+- Prompt Builder
+- Explainability Report
+- CLI
+- Logging
+- Unit tests
 
-Any AI-generated clinical documentation should always be reviewed and validated by qualified healthcare professionals.
+### 🚀 v2.0
+
+- OpenAI integration
+- Local LLM support
+- Web interface
+- Docker
+- FastAPI API
+- Interactive dashboard
 
 ---
 
-## Author
+## 👨‍💻 About the Author
 
 **Carles Hormigo**
 
-Applied Data Science Graduate  
-Artificial Intelligence · Machine Learning · Generative AI · Python
+Applied Data Science Graduate
+
+Interested in:
+
+- Artificial Intelligence
+- Machine Learning
+- Healthcare AI
+- Data Engineering
+- Python Development
 
 📍 Girona, Spain
 
 ---
 
-> *The best way to understand Artificial Intelligence is to build solutions that solve real problems.*
+> **Build • Learn • Share**
+
+Because the best software is not only useful —
+it also helps others learn.
